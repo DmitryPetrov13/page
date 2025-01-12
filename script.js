@@ -11,33 +11,11 @@ themeSwitcher.addEventListener('click', () => {
   }
 });
 
-// Background Music Control
-const backgroundMusic = document.getElementById('background-music');
-
-// Play music when the page loads
-window.addEventListener('load', () => {
-  backgroundMusic.play();
-});
-
-// Pause/Play music when the user clicks anywhere on the page
-document.body.addEventListener('click', () => {
-  if (backgroundMusic.paused) {
-    backgroundMusic.play();
-  } else {
-    backgroundMusic.pause();
-  }
-});
-
-// Ensure music loops
-backgroundMusic.loop = true;
-
 // Disable right-click
 document.addEventListener('contextmenu', (e) => {
   e.preventDefault();
   alert("Right-click is disabled on this website.");
 });
-
-// Rest of your existing JavaScript code...
 
 const startPage = document.getElementById('start-page');
 const quizPage = document.getElementById('quiz-page');
