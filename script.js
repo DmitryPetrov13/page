@@ -22,19 +22,30 @@ let userName = "";
 
 const questions = [
   {
+    question: "Какая ОС была первой операционной системой для компьютеров?",
+    options: ["Minix", "Linux", "MS-DOS", "GM-НАА"],
+    answer: "GM-НАА"
     question: "What is the capital of France?",
     options: ["Berlin", "Madrid", "Paris", "Rome"],
     answer: "Paris"
   },
   {
+    question: "Как зовут Основоположника проекта GNU?",
+    options: ["Илон Маск", "Линус Торвальдс ", "Ричард Столлман", "Владимир Путин"],
+    answer: "Ричард Столлман"
     question: "Which planet is known as the Red Planet?",
     options: ["Earth", "Mars", "Jupiter", "Saturn"],
     answer: "Mars"
   },
   {
-    question: "Who wrote 'To Kill a Mockingbird'?",
-    options: ["Harper Lee", "Mark Twain", "J.K. Rowling", "Ernest Hemingway"],
-    answer: "Harper Lee"
+    question: "Какую просьбу Линус высказал ко всем, кто уже пользовался или тестировал Linux?",
+    options: ["Подарить ему собаку", "Приготовить ему тортик", "Прислать ему открытку", "Отправить 1$ на чай"],
+    answer: "Прислать ему открытку"
+  },
+  {
+    question: "Почему к разработке Linux'a присоединились сотни, потом тысячи, потом сотни тысяч добровольных помощников?",
+    options: ["Лунус им заплатил", "Линус опубликовал исходный код Linux'a", "Линус обещал всем участникам бесплатные автомобили", "Разработка Linux'a была частью глобального заговора по захвату мира"],
+    answer: "Линус опубликовал исходный код Linux'a"
   }
 ];
 
