@@ -194,8 +194,24 @@ function endQuiz() {
     endPage.classList.remove('hidden');
     endPage.classList.add('active');
   }, 500);
+
+  // Display the score message
   scoreMessage.textContent = `Поздравляем, ${userName}! Ваша оценка ${score} из ${questions.length}.`;
+
+  // Trigger confetti
+  triggerConfetti();
+
+  // Save the score and display high scores
   saveScore(userName, score);
+}
+
+// Function to trigger confetti
+function triggerConfetti() {
+  confetti({
+    particleCount: 100, // Number of confetti particles
+    spread: 70, // Spread of the confetti
+    origin: { y: 0.6 }, // Origin of the confetti (bottom of the screen)
+  });
 }
 
 // Save Score to LocalStorage
@@ -237,3 +253,5 @@ restartBtn.addEventListener('click', () => {
   currentQuestionIndex = 0;
   score = 0;
 });
+
+
