@@ -183,7 +183,7 @@ function selectAnswer(selectedOption) {
     score++;
   }
 
-  // Show the next button
+// Show the next button
   nextBtn.classList.remove('hidden');
 }
 // Next Question
