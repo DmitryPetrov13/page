@@ -85,6 +85,41 @@ function shuffleQuestions() {
   });
 }
 
+// Function to get the current time in UTC+5
+function getCurrentTimeInUTC5() {
+  const now = new Date();
+  const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000); // Convert to UTC
+  const utc5Time = new Date(utcTime + (5 * 3600000)); // Add 5 hours for UTC+5
+  return utc5Time;
+}
+
+// Function to update colors based on time
+function updateColorsBasedOnTime() {
+  const utc5Time = getCurrentTimeInUTC5();
+  const hour = utc5Time.getHours();
+  const body = document.body;
+
+  if (hour >= 5 && hour < 12) {
+    // Morning (5 AM - 11:59 AM)
+    body.style.background = "linear-gradient(135deg, #ff9a9e, #fad0c4)";
+  } else if (hour >= 12 && hour < 17) {
+    // Afternoon (12 PM - 4:59 PM)
+    body.style.background = "linear-gradient(135deg, #a1c4fd, #c2e9fb)";
+  } else if (hour >= 17 && hour < 21) {
+    // Evening (5 PM - 8:59 PM)
+    body.style.background = "linear-gradient(135deg, #fbc2eb, #a6c1ee)";
+  } else {
+    // Night (9 PM - 4:59 AM)
+    body.style.background = "linear-gradient(135deg, #4b6cb7, #182848)";
+  }
+}
+
+// Call the function to update colors when the page loads
+updateColorsBasedOnTime();
+
+// Update colors every minute (optional)
+setInterval(updateColorsBasedOnTime, 60000);
+
 // Start Quiz
 startBtn.addEventListener('click', () => {
   if (nameInput.value.trim() === "") {
