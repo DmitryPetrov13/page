@@ -178,14 +178,43 @@ function selectAnswer(selectedOption) {
 }
 // Next Question
 nextBtn.addEventListener('click', () => {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-    loadQuestion();
-  } else {
-    endQuiz();
-  }
-});
+  // Fade out the current question
+  quizPage.classList.remove('fade-in');
+  quizPage.classList.add('fade-out');
 
+  // Wait for the fade-out animation to complete before loading the next question
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      loadQuestion(); // Load the next question
+    } else {
+      endQuiz(); // End the quiz if there are no more questions
+    }
+  }, 500); // Match the duration of the fade-out animation
+});
+// Load Question
+function loadQuestion() {
+  const currentQuestion = questions[currentQuestionIndex];
+  questionElement.innerHTML = `${userName}, ${currentQuestion.question}`;
+  optionsElement.innerHTML = '';
+
+  // Add options with a delay for staggered animation
+  currentQuestion.options.forEach((option, index) => {
+    const button = document.createElement('button');
+    button.textContent = option;
+    button.classList.add('option');
+    button.style.setProperty('--index', index); // For staggered animation
+    button.addEventListener('click', () => selectAnswer(option));
+    optionsElement.appendChild(button);
+  });
+
+  // Remove fade-out class and add fade-in class for smooth transition
+  quizPage.classList.remove('fade-out');
+  quizPage.classList.add('fade-in');
+
+  // Hide the next button initially
+  nextBtn.classList.add('hidden');
+}
 // End Quiz
 function endQuiz() {
   quizPage.classList.remove('active');
