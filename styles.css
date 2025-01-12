@@ -101,17 +101,9 @@ body.dark-theme .option {
   animation: correct 0.5s ease;
 }
 
-body.dark-theme .option.correct {
-  background: #4caf50; /* Keep the same color for visibility */
-}
-
 .option.wrong {
   background: #f44336;
   animation: wrong 0.5s ease;
-}
-
-body.dark-theme .option.wrong {
-  background: #f44336; /* Keep the same color for visibility */
 }
 
 @keyframes correct {
