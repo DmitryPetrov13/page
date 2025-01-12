@@ -25,9 +25,6 @@ const questions = [
     question: "Какая ОС была первой операционной системой для компьютеров?",
     options: ["Minix", "Linux", "MS-DOS", "GM-НАА"],
     answer: "GM-НАА"
-    question: "What is the capital of France?",
-    options: ["Berlin", "Madrid", "Paris", "Rome"],
-    answer: "Paris"
   },
   {
     question: "Как зовут Основоположника проекта GNU?",
