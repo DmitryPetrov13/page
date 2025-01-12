@@ -190,6 +190,7 @@ body.dark-theme .option.wrong {
     transform: translateY(0);
   }
 }
+
 /* Apply animations to the quiz page */
 #quiz-page.fade-out {
   animation: fadeOut 0.5s ease forwards;
