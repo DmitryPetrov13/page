@@ -202,6 +202,7 @@ nextBtn.addEventListener('click', () => {
     }
   }, 500); // Match the duration of the fade-out animation
 });
+
 // Load Question
 function loadQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
@@ -218,7 +219,7 @@ function loadQuestion() {
     optionsElement.appendChild(button);
   });
 
-  // Remove fade-out class and add fade-in class for smooth transition
+    // Remove fade-out class and add fade-in class for smooth transition
   quizPage.classList.remove('fade-out');
   quizPage.classList.add('fade-in');
 
