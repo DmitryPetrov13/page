@@ -14,9 +14,10 @@ body {
   transition: background 0.5s ease, color 0.5s ease;
 }
 
-body.black-theme {
-  background: #000;
-  animation: none;
+body.dark-theme {
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #1c1c1c, #3a3a3a);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
 }
 
 @keyframes gradientMove {
@@ -40,8 +41,8 @@ body.black-theme {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, background 0.5s ease;
 }
 
-body.black-theme .page {
-  background: rgba(0, 0, 0, 0.7);
+body.dark-theme .page {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .hidden {
@@ -86,7 +87,7 @@ button:hover {
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-body.black-theme .option {
+body.dark-theme .option {
   background: rgba(255, 255, 255, 0.1);
 }
 
