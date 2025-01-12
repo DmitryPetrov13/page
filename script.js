@@ -125,10 +125,11 @@ function loadQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.innerHTML = `${userName}, ${currentQuestion.question}`;
   optionsElement.innerHTML = '';
-  currentQuestion.options.forEach(option => {
+  currentQuestion.options.forEach((option, index) => {
     const button = document.createElement('button');
     button.textContent = option;
     button.classList.add('option');
+    button.style.setProperty('--index', index);
     button.addEventListener('click', () => selectAnswer(option));
     optionsElement.appendChild(button);
   });
