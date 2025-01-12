@@ -33,9 +33,6 @@ const questions = [
     question: "Как зовут Основоположника проекта GNU?",
     options: ["Илон Маск", "Линус Торвальдс ", "Ричард Столлман", "Владимир Путин"],
     answer: "Ричард Столлман"
-    question: "Which planet is known as the Red Planet?",
-    options: ["Earth", "Mars", "Jupiter", "Saturn"],
-    answer: "Mars"
   },
   {
     question: "Какую просьбу Линус высказал ко всем, кто уже пользовался или тестировал Linux?",
