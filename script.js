@@ -14,6 +14,7 @@ const optionsElement = document.getElementById('options');
 const nextBtn = document.getElementById('next-btn');
 const scoreMessage = document.getElementById('score-message');
 const restartBtn = document.getElementById('restart-btn');
+const greetingElement = document.getElementById('greeting'); // Add this to your HTML
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -21,26 +22,51 @@ let userName = "";
 
 const questions = [
   {
-    question: "Какая ОС была первой операционной системой для компьютеров?",
-    options: ["Minix", "Linux", "MS-DOS", "GM-НАА"],
-    answer: "GM-НАА"
+    question: "What is the capital of France?",
+    options: ["Berlin", "Madrid", "Paris", "Rome"],
+    answer: "Paris"
   },
   {
-    question: "Как зовут Основоположника проекта GNU?",
-    options: ["Илон Маск", "Линус Торвальдс ", "Ричард Столлман", "Владимир Путин"],
-    answer: "Ричард Столлман"
+    question: "Which planet is known as the Red Planet?",
+    options: ["Earth", "Mars", "Jupiter", "Saturn"],
+    answer: "Mars"
   },
   {
-    question: "Какую просьбу Линус высказал ко всем, кто уже пользовался или тестировал Linux?",
-    options: ["Подарить ему собаку", "Приготовить ему тортик", "Прислать ему открытку", "Отправить 1$ на чай"],
-    answer: "Прислать ему открытку"
-  },
-  {
-    question: "Почему к разработке Linux'a присоединились сотни, потом тысячи, потом сотни тысяч добровольных помощников?",
-    options: ["Лунус им заплатил", "Линус опубликовал исходный код Linux'a", "Линус обещал всем участникам бесплатные автомобили", "Разработка Linux'a была частью глобального заговора по захвату мира"],
-    answer: "Линус опубликовал исходный код Linux'a"
+    question: "Who wrote 'To Kill a Mockingbird'?",
+    options: ["Harper Lee", "Mark Twain", "J.K. Rowling", "Ernest Hemingway"],
+    answer: "Harper Lee"
   }
 ];
+
+// Function to get the current time in UTC+5
+function getCurrentTimeInUTC5() {
+  const now = new Date();
+  const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000); // Convert to UTC
+  const utc5Time = new Date(utcTime + (5 * 3600000)); // Add 5 hours for UTC+5
+  return utc5Time;
+}
+
+// Function to display the appropriate greeting
+function displayGreeting() {
+  const utc5Time = getCurrentTimeInUTC5();
+  const hour = utc5Time.getHours();
+  let greeting = "";
+
+  if (hour >= 5 && hour < 12) {
+    greeting = "Good Morning";
+  } else if (hour >= 12 && hour < 17) {
+    greeting = "Good Afternoon";
+  } else if (hour >= 17 && hour < 21) {
+    greeting = "Good Evening";
+  } else {
+    greeting = "Good Night";
+  }
+
+  greetingElement.textContent = greeting;
+}
+
+// Call the greeting function when the page loads
+displayGreeting();
 
 // Shuffle an array using the Fisher-Yates algorithm
 function shuffleArray(array) {
@@ -53,9 +79,9 @@ function shuffleArray(array) {
 
 // Shuffle questions and their options
 function shuffleQuestions() {
-  shuffleArray(questions); // Shuffle the order of questions
+  shuffleArray(questions);
   questions.forEach((question) => {
-    shuffleArray(question.options); // Shuffle the order of options for each question
+    shuffleArray(question.options);
   });
 }
 
@@ -66,7 +92,7 @@ startBtn.addEventListener('click', () => {
     return;
   }
   userName = nameInput.value.trim();
-  shuffleQuestions(); // Shuffle questions and options before starting the quiz
+  shuffleQuestions();
   startPage.classList.remove('active');
   startPage.classList.add('hidden');
   setTimeout(() => {
