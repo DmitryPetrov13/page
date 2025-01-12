@@ -3,8 +3,8 @@ const themeSwitcher = document.getElementById('theme-switcher');
 const body = document.body;
 
 themeSwitcher.addEventListener('click', () => {
-  body.classList.toggle('black-theme');
-  if (body.classList.contains('black-theme')) {
+  body.classList.toggle('dark-theme');
+  if (body.classList.contains('dark-theme')) {
     themeSwitcher.textContent = '☀️'; // Sun icon for light mode
   } else {
     themeSwitcher.textContent = '🌙'; // Moon icon for dark mode
