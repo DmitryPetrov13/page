@@ -58,13 +58,13 @@ function displayGreeting() {
   let greeting = "";
 
   if (hour >= 5 && hour < 12) {
-    greeting = "Good Morning";
+    greeting = "Доброе утро!";
   } else if (hour >= 12 && hour < 17) {
-    greeting = "Good Afternoon";
+    greeting = "Добрый день!";
   } else if (hour >= 17 && hour < 21) {
-    greeting = "Good Evening";
+    greeting = "Добрый вечер!";
   } else {
-    greeting = "Good Night";
+    greeting = "Доброй ночи!";
   }
 
   greetingElement.textContent = greeting;
