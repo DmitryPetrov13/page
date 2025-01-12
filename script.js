@@ -1,4 +1,8 @@
-
+// Disable right-click
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+  alert("Right-click is disabled on this website.");
+});
 const startPage = document.getElementById('start-page');
 const quizPage = document.getElementById('quiz-page');
 const endPage = document.getElementById('end-page');
