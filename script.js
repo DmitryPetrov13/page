@@ -98,6 +98,45 @@ function endQuiz() {
   quizPage.classList.add('hidden');
   endPage.classList.remove('hidden');
   scoreMessage.textContent = `Congratulations, ${userName}! Your score is ${score} out of ${questions.length}.`;
+
+  // Save the user's score
+  saveScore(userName, score);
+}
+
+// Save Score to LocalStorage
+function saveScore(name, score) {
+  // Retrieve existing scores or initialize an empty array
+  const scores = JSON.parse(localStorage.getItem('quizScores')) || [];
+
+  // Check if the user already has a score
+  const existingUserIndex = scores.findIndex(entry => entry.name === name);
+
+  if (existingUserIndex !== -1) {
+    // Update the score if the current score is higher
+    if (score > scores[existingUserIndex].score) {
+      scores[existingUserIndex].score = score;
+    }
+  } else {
+    // Add a new entry for the user
+    scores.push({ name, score });
+  }
+
+  // Save the updated scores back to localStorage
+  localStorage.setItem('quizScores', JSON.stringify(scores));
+
+  // Display high scores
+  displayHighScores();
+}
+
+// Display High Scores
+function displayHighScores() {
+  const scores = JSON.parse(localStorage.getItem('quizScores')) || [];
+  if (scores.length > 0) {
+    scoreMessage.innerHTML += `<br><br><strong>High Scores:</strong><br>`;
+    scores.sort((a, b) => b.score - a.score).forEach((entry, index) => {
+      scoreMessage.innerHTML += `${index + 1}. ${entry.name}: ${entry.score}<br>`;
+    });
+  }
 }
 
 // Restart Quiz
