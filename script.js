@@ -128,7 +128,7 @@ setInterval(updateColorsBasedOnTime, 60000);
 // Start Quiz
 startBtn.addEventListener('click', () => {
   if (nameInput.value.trim() === "") {
-    alert("Please enter your name!");
+    alert("Пожалуйста, введите свое имя!");
     return;
   }
   userName = nameInput.value.trim();
