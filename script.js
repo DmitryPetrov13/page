@@ -1,7 +1,4 @@
-// Disable right-click
-document.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
-});
+
 const startPage = document.getElementById('start-page');
 const quizPage = document.getElementById('quiz-page');
 const endPage = document.getElementById('end-page');
