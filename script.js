@@ -155,7 +155,27 @@ function selectAnswer(selectedOption) {
 
   nextBtn.classList.remove('hidden');
 }
+// Select Answer
+function selectAnswer(selectedOption) {
+  const currentQuestion = questions[currentQuestionIndex];
+  const options = document.querySelectorAll('.option');
+  options.forEach(option => {
+    option.disabled = true; // Disable all options after selection
+    if (option.textContent === currentQuestion.answer) {
+      option.classList.add('correct'); // Add correct animation
+    } else if (option.textContent === selectedOption) {
+      option.classList.add('wrong'); // Add wrong animation
+    }
+  });
 
+  // Update score if the answer is correct
+  if (selectedOption === currentQuestion.answer) {
+    score++;
+  }
+
+  // Show the next button
+  nextBtn.classList.remove('hidden');
+}
 // Next Question
 nextBtn.addEventListener('click', () => {
   currentQuestionIndex++;
