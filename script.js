@@ -21,29 +21,24 @@ let userName = "";
 
 const questions = [
   {
-    question: "What is the capital of France?",
-    options: ["Berlin", "Madrid", "Paris", "Rome"],
-    answer: "Paris"
+    question: "Какая ОС была первой операционной системой для компьютеров?",
+    options: ["Minix", "Linux", "MS-DOS", "GM-НАА"],
+    answer: "GM-НАА"
   },
   {
-    question: "Which planet is known as the Red Planet?",
-    options: ["Earth", "Mars", "Jupiter", "Saturn"],
+    question: "Как зовут Основоположника проекта GNU?",
+    options: ["Илон Маск", "Линус Торвальдс ", "Ричард Столлман", "Владимир Путин"],
     answer: "Mars"
   },
   {
-    question: "Who wrote 'To Kill a Mockingbird'?",
-    options: ["Harper Lee", "Mark Twain", "J.K. Rowling", "Ernest Hemingway"],
+    question: "Какую просьбу Линус высказал ко всем, кто уже пользовался или тестировал Linux?",
+    options: ["Подарить ему собаку", "Приготовить ему тортик", "Прислать ему открытку", "Отправить 1$ на чай"],
     answer: "Harper Lee"
   },
   {
-    question: "What is the largest mammal in the world?",
-    options: ["Elephant", "Blue Whale", "Giraffe", "Shark"],
+    question: "Почему к разработке Linux'a присоединились сотни, потом тысячи, потом сотни тысяч добровольных помощников?",
+    options: ["Лунус им заплатил", "Линус опубликовал исходный код Linux'a", "Линус обещал всем участникам бесплатные автомобили", "Разработка Linux'a была частью глобального заговора по захвату мира"],
     answer: "Blue Whale"
-  },
-  {
-    question: "Which element has the chemical symbol 'O'?",
-    options: ["Oxygen", "Gold", "Iron", "Carbon"],
-    answer: "Oxygen"
   }
 ];
 
