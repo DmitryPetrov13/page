@@ -219,13 +219,6 @@ function loadQuestion() {
     optionsElement.appendChild(button);
   });
 
-  // Remove fade-out class and add fade-in class for smooth transition
-  quizPage.classList.remove('fade-out');
-  quizPage.classList.add('fade-in');
-
-  // Hide the next button initially
-  nextBtn.classList.add('hidden');
-}
     // Remove fade-out class and add fade-in class for smooth transition
   quizPage.classList.remove('fade-out');
   quizPage.classList.add('fade-in');
@@ -301,5 +294,3 @@ restartBtn.addEventListener('click', () => {
   currentQuestionIndex = 0;
   score = 0;
 });
-
-
