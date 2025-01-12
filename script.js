@@ -94,14 +94,7 @@ function shuffleArray(array) {
   }
   return array;
 }
-function showPage(page) {
-  document.querySelectorAll('.page').forEach(p => {
-    p.classList.remove('active');
-    p.classList.add('hidden');
-  });
-  page.classList.remove('hidden');
-  setTimeout(() => page.classList.add('active'), 10); // Small delay to trigger transition
-}
+
 // Shuffle questions and their options
 function shuffleQuestions() {
   shuffleArray(questions);
@@ -109,46 +102,6 @@ function shuffleQuestions() {
     shuffleArray(question.options);
   });
 }
-startBtn.addEventListener('click', () => {
-  if (nameInput.value.trim() === "") {
-    alert("Пожалуйста, введите свое имя!");
-    return;
-  }
-  userName = nameInput.value.trim();
-  shuffleQuestions();
-  showPage(quizPage);
-  loadQuestion();
-});
-
-restartBtn.addEventListener('click', () => {
-  showPage(startPage);
-  currentQuestionIndex = 0;
-  score = 0;
-});
-
-function loadQuestion() {
-  const currentQuestion = questions[currentQuestionIndex];
-  questionElement.innerHTML = `${userName}, ${currentQuestion.question}`;
-  questionElement.classList.remove('active'); // Reset animation
-  optionsElement.innerHTML = '';
-  currentQuestion.options.forEach(option => {
-    const button = document.createElement('button');
-    button.textContent = option;
-    button.classList.add('option');
-    button.addEventListener('click', () => selectAnswer(option));
-    optionsElement.appendChild(button);
-  });
-  nextBtn.classList.add('hidden');
-
-  // Trigger animations
-  setTimeout(() => {
-    questionElement.classList.add('active');
-    document.querySelectorAll('.option').forEach((opt, index) => {
-      setTimeout(() => opt.classList.add('active'), index * 100); // Staggered fade-in
-    });
-  }, 10);
-}
-
 
 // Start Quiz
 startBtn.addEventListener('click', () => {
