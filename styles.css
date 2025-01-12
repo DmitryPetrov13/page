@@ -268,3 +268,8 @@ body.dark-theme .option.wrong {
 .option.wrong {
   animation: wrongAnswer 0.5s ease forwards;
 }
+#quiz-page {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
