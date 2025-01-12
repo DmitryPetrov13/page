@@ -198,3 +198,51 @@ body.dark-theme .option.wrong {
   animation: slideIn 0.5s ease forwards;
   animation-delay: calc(var(--index) * 0.1s);
 }
+/* Correct Answer Animation */
+@keyframes correctAnswer {
+  0% {
+    transform: scale(1);
+    background: #4caf50;
+  }
+  50% {
+    transform: scale(1.1);
+    background: #66bb6a;
+  }
+  100% {
+    transform: scale(1);
+    background: #4caf50;
+  }
+}
+
+/* Wrong Answer Animation */
+@keyframes wrongAnswer {
+  0% {
+    transform: translateX(0);
+    background: #f44336;
+  }
+  25% {
+    transform: translateX(-10px);
+    background: #ef5350;
+  }
+  50% {
+    transform: translateX(10px);
+    background: #f44336;
+  }
+  75% {
+    transform: translateX(-5px);
+    background: #ef5350;
+  }
+  100% {
+    transform: translateX(0);
+    background: #f44336;
+  }
+}
+
+/* Apply animations to correct and wrong options */
+.option.correct {
+  animation: correctAnswer 0.5s ease forwards;
+}
+
+.option.wrong {
+  animation: wrongAnswer 0.5s ease forwards;
+}
