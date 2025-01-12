@@ -150,11 +150,6 @@ function selectAnswer(selectedOption) {
 
   if (selectedOption === currentQuestion.answer) {
     score++;
-    options.forEach(option => {
-      if (option.textContent === selectedOption) {
-        option.classList.add('correct');
-      }
-    });
   }
 
   nextBtn.classList.remove('hidden');
