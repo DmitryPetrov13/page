@@ -1,7 +1,9 @@
 // Disable right-click
 document.addEventListener('contextmenu', (e) => {
   e.preventDefault();
+  alert("Right-click is disabled on this website.");
 });
+
 const startPage = document.getElementById('start-page');
 const quizPage = document.getElementById('quiz-page');
 const endPage = document.getElementById('end-page');
@@ -32,8 +34,35 @@ const questions = [
     question: "Who wrote 'To Kill a Mockingbird'?",
     options: ["Harper Lee", "Mark Twain", "J.K. Rowling", "Ernest Hemingway"],
     answer: "Harper Lee"
+  },
+  {
+    question: "What is the largest mammal in the world?",
+    options: ["Elephant", "Blue Whale", "Giraffe", "Shark"],
+    answer: "Blue Whale"
+  },
+  {
+    question: "Which element has the chemical symbol 'O'?",
+    options: ["Oxygen", "Gold", "Iron", "Carbon"],
+    answer: "Oxygen"
   }
 ];
+
+// Shuffle an array using the Fisher-Yates algorithm
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Shuffle questions and their options
+function shuffleQuestions() {
+  shuffleArray(questions); // Shuffle the order of questions
+  questions.forEach((question) => {
+    shuffleArray(question.options); // Shuffle the order of options for each question
+  });
+}
 
 // Start Quiz
 startBtn.addEventListener('click', () => {
@@ -42,22 +71,20 @@ startBtn.addEventListener('click', () => {
     return;
   }
   userName = nameInput.value.trim();
+  shuffleQuestions(); // Shuffle questions and options before starting the quiz
   startPage.classList.remove('active');
   startPage.classList.add('hidden');
   setTimeout(() => {
     quizPage.classList.remove('hidden');
     quizPage.classList.add('active');
-  }, 500); // Delay to allow slideOut animation to complete
+  }, 500);
   loadQuestion();
 });
-
-
-
 
 // Load Question
 function loadQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
-  questionElement.innerHTML = `${userName}, ${currentQuestion.question}`; // Include user's name
+  questionElement.innerHTML = `${userName}, ${currentQuestion.question}`;
   optionsElement.innerHTML = '';
   currentQuestion.options.forEach(option => {
     const button = document.createElement('button');
@@ -111,33 +138,25 @@ function endQuiz() {
   setTimeout(() => {
     endPage.classList.remove('hidden');
     endPage.classList.add('active');
-  }, 500); // Delay to allow slideOut animation to complete
+  }, 500);
   scoreMessage.textContent = `Congratulations, ${userName}! Your score is ${score} out of ${questions.length}.`;
   saveScore(userName, score);
 }
 
 // Save Score to LocalStorage
 function saveScore(name, score) {
-  // Retrieve existing scores or initialize an empty array
   const scores = JSON.parse(localStorage.getItem('quizScores')) || [];
-
-  // Check if the user already has a score
   const existingUserIndex = scores.findIndex(entry => entry.name === name);
 
   if (existingUserIndex !== -1) {
-    // Update the score if the current score is higher
     if (score > scores[existingUserIndex].score) {
       scores[existingUserIndex].score = score;
     }
   } else {
-    // Add a new entry for the user
     scores.push({ name, score });
   }
 
-  // Save the updated scores back to localStorage
   localStorage.setItem('quizScores', JSON.stringify(scores));
-
-  // Display high scores
   displayHighScores();
 }
 
@@ -159,7 +178,7 @@ restartBtn.addEventListener('click', () => {
   setTimeout(() => {
     startPage.classList.remove('hidden');
     startPage.classList.add('active');
-  }, 500); // Delay to allow slideOut animation to complete
+  }, 500);
   currentQuestionIndex = 0;
   score = 0;
 });
