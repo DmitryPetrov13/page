@@ -11,6 +11,7 @@ const restartBtn = document.getElementById('restart-btn');
 
 let currentQuestionIndex = 0;
 let score = 0;
+let userName = "";
 
 const questions = [
   {
@@ -36,6 +37,7 @@ startBtn.addEventListener('click', () => {
     alert("Please enter your name!");
     return;
   }
+  userName = nameInput.value.trim(); // Store the user's name
   startPage.classList.add('hidden');
   quizPage.classList.remove('hidden');
   loadQuestion();
@@ -44,7 +46,7 @@ startBtn.addEventListener('click', () => {
 // Load Question
 function loadQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
-  questionElement.textContent = currentQuestion.question;
+  questionElement.innerHTML = `${userName}, ${currentQuestion.question}`; // Include user's name
   optionsElement.innerHTML = '';
   currentQuestion.options.forEach(option => {
     const button = document.createElement('button');
@@ -95,7 +97,7 @@ nextBtn.addEventListener('click', () => {
 function endQuiz() {
   quizPage.classList.add('hidden');
   endPage.classList.remove('hidden');
-  scoreMessage.textContent = `Congratulations, ${nameInput.value}! Your score is ${score} out of ${questions.length}.`;
+  scoreMessage.textContent = `Congratulations, ${userName}! Your score is ${score} out of ${questions.length}.`;
 }
 
 // Restart Quiz
