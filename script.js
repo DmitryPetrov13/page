@@ -11,6 +11,13 @@ themeSwitcher.addEventListener('click', () => {
   }
 });
 
+// Function to play sound effects
+function playSound(soundId) {
+  const sound = document.getElementById(soundId);
+  sound.currentTime = 0; // Reset the sound to the beginning
+  sound.play();
+}
+
 // Disable right-click
 document.addEventListener('contextmenu', (e) => {
   e.preventDefault();
@@ -109,6 +116,7 @@ startBtn.addEventListener('click', () => {
     alert("Пожалуйста, введите свое имя!");
     return;
   }
+  playSound('button-click-sound'); // Play button-click sound
   userName = nameInput.value.trim();
   shuffleQuestions();
   startPage.classList.remove('active');
@@ -163,8 +171,10 @@ function selectAnswer(selectedOption) {
     option.disabled = true; // Disable all options after selection
     if (option.textContent === currentQuestion.answer) {
       option.classList.add('correct'); // Add correct animation
+      playSound('correct-answer-sound'); // Play correct answer sound
     } else if (option.textContent === selectedOption) {
       option.classList.add('wrong'); // Add wrong animation
+      playSound('wrong-answer-sound'); // Play wrong answer sound
     }
   });
 
@@ -273,6 +283,7 @@ function displayHighScores() {
 
 // Restart Quiz
 restartBtn.addEventListener('click', () => {
+  playSound('button-click-sound'); // Play button-click sound
   endPage.classList.remove('active');
   endPage.classList.add('hidden');
   setTimeout(() => {
