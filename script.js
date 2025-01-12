@@ -200,7 +200,7 @@ function endQuiz() {
     endPage.classList.remove('hidden');
     endPage.classList.add('active');
   }, 500);
-  scoreMessage.textContent = `Congratulations, ${userName}! Your score is ${score} out of ${questions.length}.`;
+  scoreMessage.textContent = `Поздравляем, ${userName}! Ваша оценка ${score} из ${questions.length}.`;
   saveScore(userName, score);
 }
 
@@ -225,7 +225,7 @@ function saveScore(name, score) {
 function displayHighScores() {
   const scores = JSON.parse(localStorage.getItem('quizScores')) || [];
   if (scores.length > 0) {
-    scoreMessage.innerHTML += `<br><br><strong>High Scores:</strong><br>`;
+    scoreMessage.innerHTML += `<br><br><strong>Таблица лучших результатов:</strong><br>`;
     scores.sort((a, b) => b.score - a.score).forEach((entry, index) => {
       scoreMessage.innerHTML += `${index + 1}. ${entry.name}: ${entry.score}<br>`;
     });
