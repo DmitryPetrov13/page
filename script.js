@@ -1,3 +1,7 @@
+// Disable right-click
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
 // Start Quiz
 startBtn.addEventListener('click', () => {
   if (nameInput.value.trim() === "") {
