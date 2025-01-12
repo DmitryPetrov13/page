@@ -167,6 +167,19 @@ body.dark-theme .option.wrong {
 }
 
 /* Additional Animations */
+/* Fade-out animation for questions */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Fade-in animation for questions */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -176,6 +189,15 @@ body.dark-theme .option.wrong {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Apply animations to the quiz page */
+#quiz-page.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+#quiz-page.fade-in {
+  animation: fadeIn 0.5s ease forwards;
 }
 
 @keyframes slideIn {
