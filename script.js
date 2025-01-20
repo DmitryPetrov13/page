@@ -11,6 +11,27 @@ themeSwitcher.addEventListener('click', () => {
   }
 });
 
+// Function to share on Telegram
+document.getElementById('share-telegram').addEventListener('click', () => {
+  const message = `Я набрал ${score} из ${questions.length} в этом опросе! Попробуй и ты: ${window.location.href}`;
+  const url = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+});
+
+// Function to share on VKontakte
+document.getElementById('share-vk').addEventListener('click', () => {
+  const message = `Я набрал ${score} из ${questions.length} в этом опросе! Попробуй и ты: ${window.location.href}`;
+  const url = `https://vk.com/share.php?url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent('Результат опроса')}&comment=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+});
+
+// Function to share via SMS (for mobile users)
+document.getElementById('share-sms').addEventListener('click', () => {
+  const message = `Я набрал ${score} из ${questions.length} в этом опросе! Попробуй и ты: ${window.location.href}`;
+  const url = `sms:?body=${encodeURIComponent(message)}`;
+  window.location.href = url;
+});
+
 // Function to play sound effects
 function playSound(soundId) {
   const sound = document.getElementById(soundId);
