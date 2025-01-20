@@ -1,3 +1,79 @@
+/* General Styles for Mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .page {
+    width: 90%; /* Make the quiz container narrower */
+    padding: 15px; /* Reduce padding */
+  }
+
+  h1 {
+    font-size: 24px; /* Smaller heading size */
+  }
+
+  h2 {
+    font-size: 20px; /* Smaller question size */
+  }
+
+  input, button {
+    width: 100%; /* Full-width inputs and buttons */
+    font-size: 14px; /* Smaller font size */
+    padding: 8px; /* Smaller padding */
+  }
+
+  #options .option {
+    width: 100%; /* Full-width options */
+    font-size: 14px; /* Smaller font size */
+    padding: 8px; /* Smaller padding */
+  }
+
+  #timer-container {
+    flex-direction: column; /* Stack timer and circle vertically */
+    gap: 5px; /* Reduce gap between elements */
+  }
+
+  #timer {
+    font-size: 20px; /* Smaller timer text */
+  }
+
+  #timer-circle {
+    width: 50px; /* Smaller circle */
+    height: 50px;
+  }
+
+  #timer-circle-background,
+  #timer-circle-progress {
+    stroke-width: 4; /* Thinner stroke */
+  }
+
+  #progress-bar-container {
+    height: 8px; /* Thinner progress bar */
+  }
+
+  #progress-bar {
+    height: 8px; /* Thinner progress bar */
+  }
+
+  #share-buttons {
+    flex-direction: column; /* Stack share buttons vertically */
+    gap: 5px; /* Reduce gap between buttons */
+  }
+
+  #share-buttons button {
+    width: 100%; /* Full-width share buttons */
+    font-size: 14px; /* Smaller font size */
+    padding: 8px; /* Smaller padding */
+  }
+
+  #restart-btn {
+    width: 100%; /* Full-width restart button */
+    font-size: 14px; /* Smaller font size */
+    padding: 8px; /* Smaller padding */
+  }
+}
+
 /* Share Buttons */
 #share-buttons {
   display: flex;
