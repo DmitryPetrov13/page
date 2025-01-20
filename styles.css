@@ -1,10 +1,39 @@
 /* Timer Styles */
+/* Timer Container */
+#timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Timer Text */
 #timer {
   font-size: 24px;
   font-weight: bold;
   color: #ff6f61;
-  margin-bottom: 20px;
   animation: pulse 1s infinite alternate;
+}
+
+/* Timer Circle (SVG) */
+#timer-circle {
+  transform: rotate(-90deg); /* Start from the top */
+}
+
+#timer-circle-background {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 5;
+}
+
+#timer-circle-progress {
+  fill: none;
+  stroke: #ff6f61;
+  stroke-width: 5;
+  stroke-dasharray: 157; /* Circumference of the circle (2 * π * r) */
+  stroke-dashoffset: 157; /* Start with no progress */
+  transition: stroke-dashoffset 1s linear;
 }
 
 @keyframes pulse {
