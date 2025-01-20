@@ -200,14 +200,57 @@ function endQuiz() {
   saveScore(userName, score);
 }
 
-// Function to trigger confetti
+// Function to trigger emoji confetti
 function triggerConfetti() {
-  confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 },
-  });
+  const emojis = ["🎉", "🎊", "🌟", "⭐", "💫", "✨", "🥳", "👏"]; // List of emojis to use
+  const confettiContainer = document.createElement('div');
+  confettiContainer.style.position = 'fixed';
+  confettiContainer.style.top = '0';
+  confettiContainer.style.left = '0';
+  confettiContainer.style.width = '100%';
+  confettiContainer.style.height = '100%';
+  confettiContainer.style.pointerEvents = 'none'; // Ensure clicks pass through
+  document.body.appendChild(confettiContainer);
+
+  const scoreMultiplier = Math.ceil(score / 2); // Adjust the number of emojis based on score
+  const emojiCount = 10 + scoreMultiplier * 5; // Base count + additional emojis based on score
+
+  for (let i = 0; i < emojiCount; i++) {
+    const emoji = document.createElement('div');
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)]; // Random emoji
+    emoji.style.position = 'absolute';
+    emoji.style.fontSize = `${Math.random() * 24 + 16}px`; // Random size between 16px and 40px
+    emoji.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+    emoji.style.top = `${Math.random() * -20}vh`; // Start above the viewport
+    emoji.style.transform = `rotate(${Math.random() * 360}deg)`; // Random rotation
+    emoji.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`; // Random fall duration
+    confettiContainer.appendChild(emoji);
+
+    // Remove emoji after animation ends
+    emoji.addEventListener('animationend', () => {
+      emoji.remove();
+      if (confettiContainer.children.length === 0) {
+        confettiContainer.remove(); // Remove container when all emojis are gone
+      }
+    });
+  }
 }
+
+// Add keyframes for the fall animation dynamically
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
 
 // Save Score to LocalStorage
 function saveScore(name, score) {
