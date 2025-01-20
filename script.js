@@ -35,6 +35,7 @@ const nextBtn = document.getElementById('next-btn');
 const scoreMessage = document.getElementById('score-message');
 const restartBtn = document.getElementById('restart-btn');
 const greetingElement = document.getElementById('greeting');
+const progressBar = document.getElementById('progress-bar');
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -142,6 +143,10 @@ function loadQuestion() {
     optionsElement.appendChild(button);
   });
   nextBtn.classList.add('hidden');
+
+  // Update progress bar
+  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  progressBar.style.width = `${progress}%`;
 }
 
 // Select Answer
@@ -152,8 +157,10 @@ function selectAnswer(selectedOption) {
     option.disabled = true;
     if (option.textContent === currentQuestion.answer) {
       option.classList.add('correct');
+      playSound('correct-answer-sound');
     } else if (option.textContent === selectedOption) {
       option.classList.add('wrong');
+      playSound('wrong-answer-sound');
     }
   });
 
@@ -163,69 +170,22 @@ function selectAnswer(selectedOption) {
 
   nextBtn.classList.remove('hidden');
 }
-// Select Answer
-function selectAnswer(selectedOption) {
-  const currentQuestion = questions[currentQuestionIndex];
-  const options = document.querySelectorAll('.option');
-  options.forEach(option => {
-    option.disabled = true; // Disable all options after selection
-    if (option.textContent === currentQuestion.answer) {
-      option.classList.add('correct'); // Add correct animation
-      playSound('correct-answer-sound'); // Play correct answer sound
-    } else if (option.textContent === selectedOption) {
-      option.classList.add('wrong'); // Add wrong animation
-      playSound('wrong-answer-sound'); // Play wrong answer sound
-    }
-  });
 
-  // Update score if the answer is correct
-  if (selectedOption === currentQuestion.answer) {
-    score++;
-  }
-
-// Show the next button
-  nextBtn.classList.remove('hidden');
-}
 // Next Question
 nextBtn.addEventListener('click', () => {
-  // Fade out the current question
   quizPage.classList.remove('fade-in');
   quizPage.classList.add('fade-out');
 
-  // Wait for the fade-out animation to complete before loading the next question
   setTimeout(() => {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
-      loadQuestion(); // Load the next question
+      loadQuestion();
     } else {
-      endQuiz(); // End the quiz if there are no more questions
+      endQuiz();
     }
-  }, 500); // Match the duration of the fade-out animation
+  }, 500);
 });
 
-// Load Question
-function loadQuestion() {
-  const currentQuestion = questions[currentQuestionIndex];
-  questionElement.innerHTML = `${userName}, ${currentQuestion.question}`;
-  optionsElement.innerHTML = '';
-
-  // Add options with a delay for staggered animation
-  currentQuestion.options.forEach((option, index) => {
-    const button = document.createElement('button');
-    button.textContent = option;
-    button.classList.add('option');
-    button.style.setProperty('--index', index); // For staggered animation
-    button.addEventListener('click', () => selectAnswer(option));
-    optionsElement.appendChild(button);
-  });
-
-    // Remove fade-out class and add fade-in class for smooth transition
-  quizPage.classList.remove('fade-out');
-  quizPage.classList.add('fade-in');
-
-  // Hide the next button initially
-  nextBtn.classList.add('hidden');
-}
 // End Quiz
 function endQuiz() {
   quizPage.classList.remove('active');
@@ -235,22 +195,17 @@ function endQuiz() {
     endPage.classList.add('active');
   }, 500);
 
-  // Display the score message
   scoreMessage.textContent = `Поздравляем, ${userName}! Ваша оценка ${score} из ${questions.length}.`;
-
-  // Trigger confetti
   triggerConfetti();
-
-  // Save the score and display high scores
   saveScore(userName, score);
 }
 
 // Function to trigger confetti
 function triggerConfetti() {
   confetti({
-    particleCount: 100, // Number of confetti particles
-    spread: 70, // Spread of the confetti
-    origin: { y: 0.6 }, // Origin of the confetti (bottom of the screen)
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
   });
 }
 
@@ -284,7 +239,7 @@ function displayHighScores() {
 
 // Restart Quiz
 restartBtn.addEventListener('click', () => {
-  playSound('button-click-sound'); // Play button-click sound
+  playSound('button-click-sound');
   endPage.classList.remove('active');
   endPage.classList.add('hidden');
   setTimeout(() => {
@@ -293,4 +248,5 @@ restartBtn.addEventListener('click', () => {
   }, 500);
   currentQuestionIndex = 0;
   score = 0;
+  progressBar.style.width = '0%'; // Reset progress bar
 });
