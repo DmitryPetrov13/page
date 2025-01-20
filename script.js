@@ -134,11 +134,21 @@ startBtn.addEventListener('click', () => {
 function startTimer() {
   let timeLeft = 15; // 15 seconds per question
   const timerElement = document.getElementById('timer');
-  timerElement.textContent = timeLeft;
+  const progressCircle = document.getElementById('timer-circle-progress');
+  const circumference = 157; // 2 * π * r (r = 25)
+
+  // Update the timer and circle progress
+  const updateTimer = () => {
+    timerElement.textContent = timeLeft;
+    const offset = circumference - (timeLeft / 15) * circumference;
+    progressCircle.style.strokeDashoffset = offset;
+  };
+
+  updateTimer(); // Initial update
 
   timerInterval = setInterval(() => {
     timeLeft--;
-    timerElement.textContent = timeLeft;
+    updateTimer();
 
     // If time runs out, move to the next question
     if (timeLeft <= 0) {
