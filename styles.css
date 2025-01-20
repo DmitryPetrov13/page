@@ -179,11 +179,22 @@ body.dark-theme .option.wrong {
 #progress-bar {
   height: 100%;
   width: 0;
-  background: #ff6f61;
+  background: linear-gradient(90deg, #ff6f61, #ff3b2f, #ff6f61); /* Gradient for the progress bar */
   border-radius: 5px;
   transition: width 0.5s ease;
+  background-size: 200% 100%; /* For animation */
+  animation: progressGradient 2s linear infinite; /* Animation for gradient */
 }
 
+/* Gradient Animation */
+@keyframes progressGradient {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
 /* Additional Animations */
 @keyframes fadeOut {
   from {
