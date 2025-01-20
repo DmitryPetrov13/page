@@ -40,6 +40,7 @@ const progressBar = document.getElementById('progress-bar');
 let currentQuestionIndex = 0;
 let score = 0;
 let userName = "";
+let timerInterval; // Variable to hold the timer interval
 
 const questions = [
   {
@@ -129,6 +130,45 @@ startBtn.addEventListener('click', () => {
   loadQuestion();
 });
 
+// Function to start the timer
+function startTimer() {
+  let timeLeft = 15; // 15 seconds per question
+  const timerElement = document.getElementById('timer');
+  timerElement.textContent = timeLeft;
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timerElement.textContent = timeLeft;
+
+    // If time runs out, move to the next question
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      moveToNextQuestion();
+    }
+  }, 1000); // Update every second
+}
+
+// Function to stop the timer
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
+// Function to move to the next question
+function moveToNextQuestion() {
+  stopTimer(); // Stop the current timer
+  quizPage.classList.remove('fade-in');
+  quizPage.classList.add('fade-out');
+
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      loadQuestion(); // Load the next question
+    } else {
+      endQuiz(); // End the quiz if there are no more questions
+    }
+  }, 500); // Match the duration of the fade-out animation
+}
+
 // Load Question
 function loadQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
@@ -147,6 +187,9 @@ function loadQuestion() {
   // Update progress bar
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
   progressBar.style.width = `${progress}%`;
+
+  // Start the timer for this question
+  startTimer();
 }
 
 // Select Answer
@@ -168,22 +211,14 @@ function selectAnswer(selectedOption) {
     score++;
   }
 
+  stopTimer(); // Stop the timer when an answer is selected
   nextBtn.classList.remove('hidden');
 }
 
 // Next Question
 nextBtn.addEventListener('click', () => {
-  quizPage.classList.remove('fade-in');
-  quizPage.classList.add('fade-out');
-
-  setTimeout(() => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-      loadQuestion();
-    } else {
-      endQuiz();
-    }
-  }, 500);
+  stopTimer(); // Stop the timer before moving to the next question
+  moveToNextQuestion();
 });
 
 // End Quiz
@@ -200,7 +235,7 @@ function endQuiz() {
   saveScore(userName, score);
 }
 
-// Function to trigger emoji confetti
+// Function to trigger confetti
 function triggerConfetti() {
   const emojis = ["🎉", "🎊", "🌟", "⭐", "💫", "✨", "🥳", "👏"]; // List of emojis to use
   const confettiContainer = document.createElement('div');
