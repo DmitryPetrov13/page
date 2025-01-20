@@ -23,7 +23,13 @@
   <div id="progress-bar-container">
     <div id="progress-bar"></div>
   </div>
-  <div id="timer">15</div> <!-- Timer display -->
+  <div id="timer-container">
+    <div id="timer">15</div> <!-- Timer display -->
+    <svg id="timer-circle" width="60" height="60">
+      <circle id="timer-circle-background" cx="30" cy="30" r="25" />
+      <circle id="timer-circle-progress" cx="30" cy="30" r="25" />
+    </svg>
+  </div>
   <h2 id="question"></h2>
   <div id="options"></div>
   <button id="next-btn" class="hidden">Далее</button>
