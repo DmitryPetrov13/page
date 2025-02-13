@@ -101,12 +101,7 @@ const questions = [
   {
     question: "Какая версия Windows впервые представила голосовую помощницу Кортану?",
     options: ["Windows 7", "Windows 8", "Windows 10", "Windows XP"],
-    answer:
-  },
-  {
-    question: "",
-    options: ["", "", "", ""],
-    answer:
+    answer: "Windows 10"
   }
 ];
 
