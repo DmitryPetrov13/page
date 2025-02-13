@@ -42,7 +42,6 @@ function playSound(soundId) {
 // Disable right-click
 document.addEventListener('contextmenu', (e) => {
   e.preventDefault();
-  alert("Right-click is disabled on this website.");
 });
 
 const startPage = document.getElementById('start-page');
@@ -88,6 +87,26 @@ const questions = [
     question: "Что такое операционная система (ОС)?",
     options: ["Программа для редактирования текстов.", "Набор программ, обеспечивающих работу компьютера и взаимодействие с пользователем.", "Устройство для хранения данных.", "Вид компьютерного вируса."],
     answer: "Набор программ, обеспечивающих работу компьютера и взаимодействие с пользователем."
+  },
+  {
+    question: "Какая операционная система была разработана Линусом Торвальдсом?",
+    options: ["Windows", "UNIX", "Linux", "macOS"],
+    answer: "Linux"
+  },
+  {
+    question: "Какая операционная система использовалась как база для ранних версий Windows?",
+    options: ["Linux", "MS-DOS", "UNIX", "Minix"],
+    answer: "MS-DOS"
+  },
+  {
+    question: "Какая версия Windows впервые представила голосовую помощницу Кортану?",
+    options: ["Windows 7", "Windows 8", "Windows 10", "Windows XP"],
+    answer:
+  },
+  {
+    question: "",
+    options: ["", "", "", ""],
+    answer:
   }
 ];
 
